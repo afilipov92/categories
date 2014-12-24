@@ -1,0 +1,23 @@
+﻿<h3 align="center" class="title_form">Форма для добавления новой категории</h3>
+<form name="form1" method="post">
+    <div>
+         <input id="id" type="text" name="id" value="{{id}}" hidden>
+    </div>
+    <div>
+        <label for="title">Название категории</label>
+        <br/>
+         <input id="title" type="text" name="title" class="inputs" placeholder="Введите название категории" required value="{{title}}">
+         <p data-name="title"></p>
+    </div>
+    <div>
+        <label for="id_parent">Выберите родительскую категорию</label>
+        <br/>
+         <select name="id_parent" class="inputs">
+         {{id_parent}}
+         </select>
+    </div> 
+    <br/>   
+    <div>
+        <button id="send" name="send" type="submit" class="send">Занести в базу</button>
+    </div>
+</form>
