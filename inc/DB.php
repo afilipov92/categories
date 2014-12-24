@@ -28,7 +28,13 @@ class DB{
      */
     public function saveCat(FormData $Data, $query){
         $ins = $this->db->prepare($query);
-        if($ins->execute(array('id_parent' => $Data->id_parent, 'title' => $Data->title))){
+		if($Data->id_parent == ""){
+			$a = array('id_parent' => NULL, 'title' => $Data->title);
+		}
+		else{
+			$a = array('id_parent' => $Data->id_parent, 'title' => $Data->title);
+		}
+        if($ins->execute($a)){
             return true;
         } else{
             return false;

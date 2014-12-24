@@ -23,12 +23,11 @@ $listCat = $db->getCategories();
 if($id = FormCategory::isGetID()){
     $arr = $db->requestSelect($id);
 } else{
-    $arr = array('id' => NULL, 'title' => "", 'id_parent' => "");
+    $arr = array('id' => "", 'title' => "", 'id_parent' => "");
 }
 
 FormCategory::setFormData($ob, $arr);
-
-if(FormCategory::isFormSubmitted()){
+if(FormCategory::isFormSubmitted() == true){
 	$id = FormCategory::isPostID();
 	if(FormCategory::isDel()){
         $db->requestDel($id);
@@ -58,7 +57,7 @@ if(FormCategory::isFormSubmitted()){
     }
 }
 
-$select = "<option selected value>--</option>";
+$select = '<option selected value>--</option>';
 if($listCat){
     $select .= Categories::getCtaegoriesForForm($db->getCategories(), $selectTpl, $ob->id_parent);
 }
