@@ -32,14 +32,17 @@ class Categories{
      * преобразует массив категорий в html
      * @param int $id_parent
      */
-    public function toStringListTopics($id_parent = 0) {
+    public function toStringListTopics($listCatTpl, $id_parent = 0) {
         if(empty($this->arr[$id_parent])) {
             return;
         }
         $this->listTopics .= "<ul>";
         foreach($this->arr[$id_parent] as $a) {
-            $this->listTopics .= "<li><form name=\"form2\" method=\"post\" class='form2'><a href=\"?id=".$a['id']."\"><input type='text' name='id' hidden value='".$a['id']."'>".$a['title']." {{EDIT}} {{DEL}}</a></form>";
-            $this->listTopics .= $this->toStringListTopics($a['id']);
+            $this->listTopics .= Template::processTemplace($listCatTpl, array(
+			    'id' => $a['id'],
+				'title' => $a['title']
+			));
+            $this->listTopics .= $this->toStringListTopics($listCatTpl, $a['id']);
             $this->listTopics .= "</li>";
         }
         $this->listTopics .= "</ul>";

@@ -15,6 +15,7 @@ $templ->setHtml(Template::getTemplate('form'));
 $selectTpl = Template::getTemplate('option_for_select');
 $buttonDel = Template::getTemplate('button_del');
 $buttonEdit = Template::getTemplate('button_edit');
+$listCatTpl = Template::getTemplate('list_cat');
 
 $msg = "";
 $list = "";
@@ -71,7 +72,7 @@ $templ->setHtml(Template::processTemplace($templ->getHtml(), array (
 
 if($listCat){
     $cat = new Categories($listCat);
-    $cat->toStringListTopics();
+    $cat->toStringListTopics($listCatTpl);
 	$list = Template::processTemplace($cat->getListTopics(), array(
         'DEL' => $buttonDel,
         'EDIT' => $buttonEdit
