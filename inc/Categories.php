@@ -40,8 +40,8 @@ class Categories{
         foreach($this->arr[$id_parent] as $a) {
             $this->listTopics .= Template::processTemplace($listCatTpl, array(
 			    'id' => $a['id'],
-				'title' => $a['title']
-			));
+                'title' => $a['title']
+        ));
             $this->listTopics .= $this->toStringListTopics($listCatTpl, $a['id']);
             $this->listTopics .= "</li>";
         }
@@ -54,7 +54,7 @@ class Categories{
      */
     public function getListTopics(){
         return $this->listTopics;
-	}
+    }
 
     /**
      * Возвращает список option для select
@@ -70,7 +70,7 @@ class Categories{
                 $str .= Template::processTemplace("<option value='{{id}}' selected>{{title}}</option>", $mas);
             } else{
                 $str .= Template::processTemplace($select, $mas);
-		    }
+            }
         }
         return $str;
     }
