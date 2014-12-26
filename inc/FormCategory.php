@@ -30,7 +30,7 @@ class FormCategory{
      * проверяет был ли отправле id методом get
      * @return bool
      */
-    public static function isGetID(){
+    public static function getID(){
         return isset($_GET['id'])? $_GET['id']: false;
     }
 
@@ -38,7 +38,7 @@ class FormCategory{
      * проверяет был ли отправле id методом post
      * @return bool
      */
-    public static function isPostID(){
+    public static function postID(){
         return isset($_POST['id'])? $_POST['id']: false;
 	}
 
@@ -48,9 +48,9 @@ class FormCategory{
      * @param array $arr
      */
     public static function setFormData(FormData $ob, array $arr){
-        $ob->id = isset($_POST['id'])? $_POST['id']: $arr['id'];
-        $ob->title = isset($_POST['title'])? trim($_POST['title']): $arr['title'];
-        $ob->id_parent = isset($_POST['id_parent'])? trim($_POST['id_parent']): $arr['id_parent'];
+        $ob->id = isset($_POST['id'])? (int)$_POST['id']: $arr['id'];
+        $ob->title = isset($_POST['title'])? trim(htmlspecialchars($_POST['title'])): $arr['title'];
+        $ob->id_parent = isset($_POST['id_parent'])? (int)($_POST['id_parent']): $arr['id_parent'];
     }
 
     /**

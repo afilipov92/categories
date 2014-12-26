@@ -1,9 +1,6 @@
 ﻿<?php
-error_reporting(E_ALL);
 
-function __autoload($className) {
-    require_once __DIR__ . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR . $className . '.php';
-}
+require_once("inc/inc.php");
 
 $templ = new Template();
 $db = new DB();
@@ -21,7 +18,7 @@ $msg = "";
 $list = "";
 $listCat = $db->getCategories();
 
-if($id = FormCategory::isGetID()){
+if($id = FormCategory::getID()){
     $arr = $db->requestSelect($id);
 } else{
     $arr = array('id' => "", 'title' => "", 'id_parent' => "");
@@ -29,7 +26,7 @@ if($id = FormCategory::isGetID()){
 
 FormCategory::setFormData($ob, $arr);
 if(FormCategory::isFormSubmitted() == true){
-	$id = FormCategory::isPostID();
+	$id = FormCategory::postID();
 	if(FormCategory::isDel()){
         $db->requestDel($id);
         header('Location: '.$_SERVER['REQUEST_URI']);

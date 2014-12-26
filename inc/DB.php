@@ -1,5 +1,4 @@
 ﻿<?php
-require_once('inc.php');
 
 class DB{
 
@@ -12,7 +11,7 @@ class DB{
     /**
      * соединение с базой данных
      */
-    function __Construct(){
+    function __construct(){
         try{
             $this->db = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8;', DB_USER, DB_PASSWORD);
         } catch(PDOException $e){
@@ -61,7 +60,9 @@ class DB{
      * @return bool|mixed
      */
     public function requestSelect($id){
-        $mas = $this->db->query("SELECT * FROM categories WHERE id='$id'", PDO::FETCH_ASSOC)->fetch();
+		$sth = $this->db->prepare("SELECT * FROM categories WHERE id=:id");
+        $sth->execute(array('id' => $id));
+		$mas = $sth->fetch(PDO::FETCH_ASSOC);
         if(!empty($mas)){
             return $mas;
         } else{

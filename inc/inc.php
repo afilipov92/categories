@@ -1,4 +1,9 @@
 ﻿<?php
+error_reporting(E_ALL);
+
+function __autoload($className) {
+    require_once __DIR__ . DIRECTORY_SEPARATOR . $className . '.php';
+}
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');

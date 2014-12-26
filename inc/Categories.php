@@ -41,7 +41,7 @@ class Categories{
             $this->listTopics .= Template::processTemplace($listCatTpl, array(
 			    'id' => $a['id'],
                 'title' => $a['title']
-        ));
+            ));
             $this->listTopics .= $this->toStringListTopics($listCatTpl, $a['id']);
             $this->listTopics .= "</li>";
         }
